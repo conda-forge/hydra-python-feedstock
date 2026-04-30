@@ -1,22 +1,108 @@
-About hydra-python-feedstock
-============================
+About hydra-ext-feedstock
+=========================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hydra-python-feedstock/blob/main/LICENSE.txt)
+
+
+About hydra-ext
+---------------
 
 Home: https://github.com/CategoricalData/hydra
 
 Package license: Apache-2.0
 
-Summary: Hydra Python implementation - type-safe transformations for data and programs
+Summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
 
 Development: https://github.com/CategoricalData/hydra
 
-Documentation: https://github.com/CategoricalData/hydra/tree/main/hydra-python
+Documentation: https://github.com/CategoricalData/hydra/wiki
 
 Hydra is a domain-specific language for data models and data transformations.
 It is based on a typed lambda calculus, and transforms data and schemas between
-languages in a way which maintains type conformance. This package contains the
-Python implementation of Hydra.
+languages in a way which maintains type conformance. Starting with 0.15, the
+Python release ships per-package wheels using PEP 420 implicit namespace packages,
+so multiple wheels install side-by-side and merge their hydra.* contents at
+import time.
+
+About hydra-kernel
+------------------
+
+Home: https://github.com/CategoricalData/hydra
+
+Package license: Apache-2.0
+
+Summary: Hydra kernel - core types, terms, DSL, eval, and primitives
+
+Development: https://github.com/CategoricalData/hydra
+
+Documentation: https://github.com/CategoricalData/hydra/wiki
+
+Hydra is a domain-specific language for data models and data transformations.
+It is based on a typed lambda calculus, and transforms data and schemas between
+languages in a way which maintains type conformance. Starting with 0.15, the
+Python release ships per-package wheels using PEP 420 implicit namespace packages,
+so multiple wheels install side-by-side and merge their hydra.* contents at
+import time.
+
+About hydra-pg
+--------------
+
+Home: https://github.com/CategoricalData/hydra
+
+Package license: Apache-2.0
+
+Summary: Hydra PG - property graph model, coders, GraphSON, and TinkerPop
+
+Development: https://github.com/CategoricalData/hydra
+
+Documentation: https://github.com/CategoricalData/hydra/wiki
+
+Hydra is a domain-specific language for data models and data transformations.
+It is based on a typed lambda calculus, and transforms data and schemas between
+languages in a way which maintains type conformance. Starting with 0.15, the
+Python release ships per-package wheels using PEP 420 implicit namespace packages,
+so multiple wheels install side-by-side and merge their hydra.* contents at
+import time.
+
+About hydra-python
+------------------
+
+Home: https://github.com/CategoricalData/hydra
+
+Package license: Apache-2.0
+
+Summary: Hydra Python - Python syntax, serde, and coder
+
+Development: https://github.com/CategoricalData/hydra
+
+Documentation: https://github.com/CategoricalData/hydra/wiki
+
+Hydra is a domain-specific language for data models and data transformations.
+It is based on a typed lambda calculus, and transforms data and schemas between
+languages in a way which maintains type conformance. Starting with 0.15, the
+Python release ships per-package wheels using PEP 420 implicit namespace packages,
+so multiple wheels install side-by-side and merge their hydra.* contents at
+import time.
+
+About hydra-rdf
+---------------
+
+Home: https://github.com/CategoricalData/hydra
+
+Package license: Apache-2.0
+
+Summary: Hydra RDF - RDF, OWL, SHACL, ShEx, and XML Schema models
+
+Development: https://github.com/CategoricalData/hydra
+
+Documentation: https://github.com/CategoricalData/hydra/wiki
+
+Hydra is a domain-specific language for data models and data transformations.
+It is based on a typed lambda calculus, and transforms data and schemas between
+languages in a way which maintains type conformance. Starting with 0.15, the
+Python release ships per-package wheels using PEP 420 implicit namespace packages,
+so multiple wheels install side-by-side and merge their hydra.* contents at
+import time.
 
 Current build status
 ====================
@@ -35,53 +121,57 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--ext-green.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--kernel-green.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--pg-green.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--python-green.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--rdf-green.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) |
 
-Installing hydra-python
-=======================
+Installing hydra-ext
+====================
 
-Installing `hydra-python` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `hydra-ext` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `hydra-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `hydra-ext, hydra-kernel, hydra-pg, hydra-python, hydra-rdf` can be installed with `conda`:
 
 ```
-conda install hydra-python
-```
-
-or with `mamba`:
-
-```
-mamba install hydra-python
-```
-
-It is possible to list all of the versions of `hydra-python` available on your platform with `conda`:
-
-```
-conda search hydra-python --channel conda-forge
+conda install hydra-ext hydra-kernel hydra-pg hydra-python hydra-rdf
 ```
 
 or with `mamba`:
 
 ```
-mamba search hydra-python --channel conda-forge
+mamba install hydra-ext hydra-kernel hydra-pg hydra-python hydra-rdf
+```
+
+It is possible to list all of the versions of `hydra-ext` available on your platform with `conda`:
+
+```
+conda search hydra-ext --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search hydra-ext --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search hydra-python --channel conda-forge
+mamba repoquery search hydra-ext --channel conda-forge
 
-# List packages depending on `hydra-python`:
-mamba repoquery whoneeds hydra-python --channel conda-forge
+# List packages depending on `hydra-ext`:
+mamba repoquery whoneeds hydra-ext --channel conda-forge
 
-# List dependencies of `hydra-python`:
-mamba repoquery depends hydra-python --channel conda-forge
+# List dependencies of `hydra-ext`:
+mamba repoquery depends hydra-ext --channel conda-forge
 ```
 
 
@@ -126,17 +216,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating hydra-python-feedstock
-===============================
+Updating hydra-ext-feedstock
+============================
 
-If you would like to improve the hydra-python recipe or build a new
+If you would like to improve the hydra-ext recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/hydra-python-feedstock are
+Note that all branches in the conda-forge/hydra-ext-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
