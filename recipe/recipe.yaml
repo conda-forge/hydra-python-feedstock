@@ -3,7 +3,7 @@ schema_version: 1
 
 context:
   name: hydra-python
-  version: "0.14.1"
+  version: "0.15.0"
   python_min: "3.12"
 
 package:
@@ -12,12 +12,12 @@ package:
 
 source:
   url: https://github.com/CategoricalData/hydra/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 49467589726debf9b01a64f877878499f6beb8231684709bc9407ec3360dedff
+  sha256: f156dd703b75448d288c4b7f65748cee62e8e5913fe48e25d630433f76669021
 
 build:
   number: 0
   noarch: python
-  script: 
+  script:
     - cd hydra-python
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
