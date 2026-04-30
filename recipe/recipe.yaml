@@ -26,7 +26,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-kernel
+        - cd hydra-${{ version }}/dist/python/hydra-kernel
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -50,7 +50,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-rdf
+        - cd hydra-${{ version }}/dist/python/hydra-rdf
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -74,7 +74,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-pg
+        - cd hydra-${{ version }}/dist/python/hydra-pg
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -100,7 +100,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-ext
+        - cd hydra-${{ version }}/dist/python/hydra-ext
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -124,7 +124,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-python
+        - cd hydra-${{ version }}/dist/python/hydra-python
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
