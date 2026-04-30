@@ -19,26 +19,6 @@ build:
   number: 0
   noarch: python
 
-about:
-  homepage: https://github.com/CategoricalData/hydra
-  license: Apache-2.0
-  license_file: LICENSE
-  summary: Hydra - type-aware data transformation toolkit
-  description: |
-    Hydra is a domain-specific language for data models and data transformations.
-    It is based on a typed lambda calculus, and transforms data and schemas between
-    languages in a way which maintains type conformance. Starting with 0.15, the
-    Python release ships per-package wheels using PEP 420 implicit namespace packages,
-    so multiple wheels install side-by-side and merge their hydra.* contents at
-    import time.
-  repository: https://github.com/CategoricalData/hydra
-  documentation: https://github.com/CategoricalData/hydra/wiki
-
-extra:
-  recipe-maintainers:
-    - joshsh
-    - phreed
-
 outputs:
   - package:
       name: hydra-kernel
@@ -60,6 +40,7 @@ outputs:
           imports:
             - hydra.core
           pip_check: true
+          python_version: ${{ python_min }}.*
     about:
       summary: Hydra kernel - core types, terms, DSL, eval, and primitives
 
@@ -83,6 +64,7 @@ outputs:
     tests:
       - python:
           pip_check: true
+          python_version: ${{ python_min }}.*
     about:
       summary: Hydra RDF - RDF, OWL, SHACL, ShEx, and XML Schema models
 
@@ -108,6 +90,7 @@ outputs:
     tests:
       - python:
           pip_check: true
+          python_version: ${{ python_min }}.*
     about:
       summary: Hydra PG - property graph model, coders, GraphSON, and TinkerPop
 
@@ -131,6 +114,7 @@ outputs:
     tests:
       - python:
           pip_check: true
+          python_version: ${{ python_min }}.*
     about:
       summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
 
@@ -154,5 +138,26 @@ outputs:
     tests:
       - python:
           pip_check: true
+          python_version: ${{ python_min }}.*
     about:
       summary: Hydra Python - Python syntax, serde, and coder
+
+about:
+  homepage: https://github.com/CategoricalData/hydra
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Hydra - type-aware data transformation toolkit
+  description: |
+    Hydra is a domain-specific language for data models and data transformations.
+    It is based on a typed lambda calculus, and transforms data and schemas between
+    languages in a way which maintains type conformance. Starting with 0.15, the
+    Python release ships per-package wheels using PEP 420 implicit namespace packages,
+    so multiple wheels install side-by-side and merge their hydra.* contents at
+    import time.
+  repository: https://github.com/CategoricalData/hydra
+  documentation: https://github.com/CategoricalData/hydra/wiki
+
+extra:
+  recipe-maintainers:
+    - joshsh
+    - phreed
