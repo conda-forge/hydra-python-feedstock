@@ -1,0 +1,31 @@
+{
+  "formatVersion": 1,
+  "version": 1,
+  "hashes": {
+    "com.gdblab.pathAlgebra.expressions": "cc19fd8b0065ea6ffdf431101ed9040a0bb72e193c110f6e6ea7d5019ced66ef",
+    "com.gdblab.pathAlgebra.syntax": "d6ff685be0717cf9b68ed596d78b174a46f3d521c44830765df529024a7bdde9",
+    "hydra.cypher.features": "a7b8b29fe598a31fd754d93f0250ff85c66cf22888e18256643ec02ac7909853",
+    "hydra.cypher.openCypher": "b496391f47349e251c44ded811ba59cc2272caff66d175161989a5532d45abc2",
+    "hydra.error.pg": "67688aec530985d296b79d254a99eeac36e129b54db94428292d2cae5f28582a",
+    "hydra.graphviz.coder": "b6bb0046c9bf5ac72cca47fad1e8205b66b9036d01b0fbab92b44f2726f3147e",
+    "hydra.graphviz.dot": "c9f1684114d6cc17f990d70ae2bccddd7ff651c29c67777cb132127762cb66d0",
+    "hydra.graphviz.serde": "a0ab37a15451c82489e2748212e61b3a1e41793e3a48248b60f13910db6e6f8c",
+    "hydra.pg.coder": "0cde6b51326610c12ccfab0277dc93541c22ebd9bb55616b147743a429300772",
+    "hydra.pg.graphson.coder": "61c6fae74af1561f56861075035fb38df08608fc1ab1460f9139946c3c219b33",
+    "hydra.pg.graphson.construct": "986aa90dcc1077393e3768f589692c5b002759c6b90eb25f3abe72e1e606e582",
+    "hydra.pg.graphson.syntax": "49848c6ea52f0965118736513db8af626428cce19aa3bf07518c1b83fdc0a23f",
+    "hydra.pg.graphson.utils": "942c5274460dd3692b98dae69f65e405ca2f76b5436dfa3a171888a2c6d336e0",
+    "hydra.pg.mapping": "0d76cd4528c761a05ec1e7a7e81b8459a2f98c52e73ff1135acdace94982623a",
+    "hydra.pg.model": "cd64d2b3693a514801028e38990f7f1f0750963ef9d1df4a45b0fbab42f8650b",
+    "hydra.pg.printing": "d032bf3ebd2ad88631c4b6b22dbbef7a6c01afd4c9ac12a4a0cd726be87e7bb6",
+    "hydra.pg.query": "d4dce2ec663c80f254bcc6bee6e33459c42b2b0299130bf7bb659becd473fdca",
+    "hydra.pg.rdf.environment": "d144365177eb66a667fdcc37d12f3e06316566123086f9415ffba836bc6c94ec",
+    "hydra.pg.rdf.mappings": "b47327d0d679f53d2d4b75f515e992750b17372372559517706c5bb56d582c19",
+    "hydra.pg.termsToElements": "ff37b4144fad84fe4c80b4c86844b13ace79ab473be116f98f78fee43b6ba351",
+    "hydra.pg.utils": "549e78a85871a70416b1e5deba02b8395f906bf33c32b59ed0f00595bd63f2bb",
+    "hydra.tinkerpop.features": "5d746e32d4768f6a21564a261c41145207e3fd53b732537c7c40af1cdddd30a3",
+    "hydra.tinkerpop.gremlin": "8c58b7f204b532d1d3334ad85aad7f1ef4ee13c9b3f18574098c03df5ca06373",
+    "hydra.tinkerpop.language": "1752ad9c0977168d01c835c25819aa7b74aa57cbdd080096142f1cad2abe1900",
+    "openGql.grammar": "35c3b344abe933126eb25e9e0675828b780c6f795587128f13dbfb65e743eb26"
+  }
+}

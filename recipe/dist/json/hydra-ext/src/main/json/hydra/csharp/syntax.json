@@ -1,0 +1,4752 @@
+{
+  "definitions": [
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Identifier",
+        "typeScheme": {"body": {"wrap": {"literal": {"string": {}}}}, "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Keyword",
+        "typeScheme": {"body": {"wrap": {"literal": {"string": {}}}}, "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Literal",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "boolean", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "integer",
+                "type": {"variable": "hydra.csharp.syntax.IntegerLiteral"}},
+              {"name": "real", "type": {"literal": {"float": {"bigfloat": {}}}}},
+              {"name": "character", "type": {"literal": {"string": {}}}},
+              {"name": "string", "type": {"literal": {"string": {}}}},
+              {"name": "null", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IntegerLiteral",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "decimal", "type": {"literal": {"string": {}}}},
+              {"name": "hexadecimal", "type": {"literal": {"string": {}}}},
+              {"name": "binary", "type": {"literal": {"integer": {"bigint": {}}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamespaceName",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.NamespaceOrTypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeName",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.NamespaceOrTypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamespaceOrTypeName",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.IdentifierNamespaceOrTypeName"}},
+              {
+                "name": "qualified",
+                "type": {"variable": "hydra.csharp.syntax.QualifiedNamespaceOrTypeName"}},
+              {
+                "name": "alias",
+                "type": {"variable": "hydra.csharp.syntax.QualifiedAliasMember"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IdentifierNamespaceOrTypeName",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QualifiedNamespaceOrTypeName",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "namespaceOrType",
+                "type": {"variable": "hydra.csharp.syntax.NamespaceOrTypeName"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Type",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "reference",
+                "type": {"variable": "hydra.csharp.syntax.ReferenceType"}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.ValueType"}},
+              {
+                "name": "param",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}},
+              {
+                "name": "pointer",
+                "type": {"variable": "hydra.csharp.syntax.PointerType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ReferenceType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "class",
+                "type": {"variable": "hydra.csharp.syntax.ClassType"}},
+              {
+                "name": "interface",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceType"}},
+              {
+                "name": "array",
+                "type": {"variable": "hydra.csharp.syntax.ArrayType"}},
+              {
+                "name": "delegate",
+                "type": {"variable": "hydra.csharp.syntax.DelegateType"}},
+              {"name": "dynamic", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "typeName",
+                "type": {"variable": "hydra.csharp.syntax.TypeName"}},
+              {"name": "object", "type": {"unit": {}}},
+              {"name": "string", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceType",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.TypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArrayType",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.NonArrayType"}},
+              {
+                "name": "rank",
+                "type": {"list": {"variable": "hydra.csharp.syntax.RankSpecifier"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NonArrayType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.ValueType"}},
+              {
+                "name": "class",
+                "type": {"variable": "hydra.csharp.syntax.ClassType"}},
+              {
+                "name": "interface",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceType"}},
+              {
+                "name": "delegate",
+                "type": {"variable": "hydra.csharp.syntax.DelegateType"}},
+              {"name": "dynamic", "type": {"unit": {}}},
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}},
+              {
+                "name": "pointer",
+                "type": {"variable": "hydra.csharp.syntax.PointerType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RankSpecifier",
+        "typeScheme": {
+          "body": {"wrap": {"literal": {"integer": {"int32": {}}}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DelegateType",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.TypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ValueType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "nonNullable",
+                "type": {"variable": "hydra.csharp.syntax.StructOrEnumType"}},
+              {
+                "name": "nullable",
+                "type": {"variable": "hydra.csharp.syntax.StructOrEnumType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StructOrEnumType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "struct",
+                "type": {"variable": "hydra.csharp.syntax.StructType"}},
+              {"name": "enum", "type": {"variable": "hydra.csharp.syntax.EnumType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StructType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "typeName",
+                "type": {"variable": "hydra.csharp.syntax.TypeName"}},
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.SimpleType"}},
+              {
+                "name": "tuple",
+                "type": {"variable": "hydra.csharp.syntax.TupleType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SimpleType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "numeric",
+                "type": {"variable": "hydra.csharp.syntax.NumericType"}},
+              {"name": "bool", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NumericType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "integral",
+                "type": {"variable": "hydra.csharp.syntax.IntegralType"}},
+              {
+                "name": "floatingPoint",
+                "type": {"variable": "hydra.csharp.syntax.FloatingPointType"}},
+              {"name": "decimal", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IntegralType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "sbyte", "type": {"unit": {}}},
+              {"name": "byte", "type": {"unit": {}}},
+              {"name": "short", "type": {"unit": {}}},
+              {"name": "ushort", "type": {"unit": {}}},
+              {"name": "int", "type": {"unit": {}}},
+              {"name": "uint", "type": {"unit": {}}},
+              {"name": "long", "type": {"unit": {}}},
+              {"name": "ulong", "type": {"unit": {}}},
+              {"name": "char", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FloatingPointType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "float", "type": {"unit": {}}},
+              {"name": "double", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TupleType",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.TupleTypeElement"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TupleTypeElement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "identifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumType",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.TypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeArgumentList",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Type"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeParameter",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Identifier"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UnmanagedType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.ValueType"}},
+              {
+                "name": "pointer",
+                "type": {"variable": "hydra.csharp.syntax.PointerType"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariableReference",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Expression"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Pattern",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "declaration",
+                "type": {"variable": "hydra.csharp.syntax.DeclarationPattern"}},
+              {
+                "name": "constant",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "var",
+                "type": {"variable": "hydra.csharp.syntax.Designation"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DeclarationPattern",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "designation",
+                "type": {"variable": "hydra.csharp.syntax.Designation"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Designation",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Identifier"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArgumentList",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Argument"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Argument",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentValue"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArgumentValue",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "in",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {
+                "name": "out",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PrimaryExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "noArray",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryNoArrayCreationExpression"}},
+              {
+                "name": "array",
+                "type": {"variable": "hydra.csharp.syntax.ArrayCreationExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PrimaryNoArrayCreationExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "literal",
+                "type": {"variable": "hydra.csharp.syntax.Literal"}},
+              {
+                "name": "interpolatedString",
+                "type": {"variable": "hydra.csharp.syntax.InterpolatedStringExpression"}},
+              {
+                "name": "simpleName",
+                "type": {"variable": "hydra.csharp.syntax.SimpleName"}},
+              {
+                "name": "parenthesized",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "tuple",
+                "type": {"variable": "hydra.csharp.syntax.TupleExpression"}},
+              {
+                "name": "memberAccess",
+                "type": {"variable": "hydra.csharp.syntax.MemberAccess"}},
+              {
+                "name": "nullConditionalMemberAccess",
+                "type": {"variable": "hydra.csharp.syntax.NullConditionalMemberAccess"}},
+              {
+                "name": "invocation",
+                "type": {"variable": "hydra.csharp.syntax.InvocationExpression"}},
+              {
+                "name": "elementAccess",
+                "type": {"variable": "hydra.csharp.syntax.ElementAccess"}},
+              {
+                "name": "nullConditionalElementAccess",
+                "type": {"variable": "hydra.csharp.syntax.NullConditionalElementAccess"}},
+              {"name": "thisAccess", "type": {"unit": {}}},
+              {
+                "name": "baseAccess",
+                "type": {"variable": "hydra.csharp.syntax.BaseAccess"}},
+              {
+                "name": "postIncrement",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "postDecrement",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "objectCreation",
+                "type": {"variable": "hydra.csharp.syntax.ObjectCreationExpression"}},
+              {
+                "name": "delegateCreation",
+                "type": {"variable": "hydra.csharp.syntax.DelegateCreationExpression"}},
+              {
+                "name": "anonymousObjectCreation",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.MemberDeclaratorList"}}},
+              {
+                "name": "typeof",
+                "type": {"variable": "hydra.csharp.syntax.TypeofExpression"}},
+              {
+                "name": "sizeof",
+                "type": {"variable": "hydra.csharp.syntax.UnmanagedType"}},
+              {
+                "name": "checked",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "unchecked",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "defaultValue",
+                "type": {"variable": "hydra.csharp.syntax.DefaultValueExpression"}},
+              {
+                "name": "nameof",
+                "type": {"variable": "hydra.csharp.syntax.NamedEntity"}},
+              {
+                "name": "anonymousMethod",
+                "type": {"variable": "hydra.csharp.syntax.AnonymousMethodExpression"}},
+              {
+                "name": "pointerMemberAccess",
+                "type": {"variable": "hydra.csharp.syntax.PointerMemberAccess"}},
+              {
+                "name": "pointerElementAccess",
+                "type": {"variable": "hydra.csharp.syntax.PointerElementAccess"}},
+              {
+                "name": "stackalloc",
+                "type": {"variable": "hydra.csharp.syntax.StackallocExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterpolatedStringExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "regular",
+                "type": {
+                  "variable": "hydra.csharp.syntax.InterpolatedRegularStringExpression"}},
+              {
+                "name": "verbatim",
+                "type": {
+                  "variable": "hydra.csharp.syntax.InterpolatedVerbatimStringExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterpolatedRegularStringExpression",
+        "typeScheme": {"body": {"wrap": {"literal": {"string": {}}}}, "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RegularInterpolation",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "width",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Expression"}}},
+              {"name": "format", "type": {"maybe": {"literal": {"string": {}}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterpolatedVerbatimStringExpression",
+        "typeScheme": {"body": {"wrap": {"literal": {"string": {}}}}, "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VerbatimInterpolation",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "width",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ConstantExpression"}}},
+              {"name": "format", "type": {"maybe": {"literal": {"string": {}}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SimpleName",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TupleExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "elements",
+                "type": {"list": {"variable": "hydra.csharp.syntax.TupleElement"}}},
+              {
+                "name": "deconstruction",
+                "type": {"variable": "hydra.csharp.syntax.DeconstructionTuple"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TupleElement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DeconstructionTuple",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.DeconstructionElement"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DeconstructionElement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "tuple",
+                "type": {"variable": "hydra.csharp.syntax.DeconstructionTuple"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "head",
+                "type": {"variable": "hydra.csharp.syntax.MemberAccessHead"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberAccessHead",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "primary",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "predefined",
+                "type": {"variable": "hydra.csharp.syntax.PredefinedType"}},
+              {
+                "name": "qualifiedAlias",
+                "type": {"variable": "hydra.csharp.syntax.QualifiedAliasMember"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PredefinedType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "bool", "type": {"unit": {}}},
+              {"name": "byte", "type": {"unit": {}}},
+              {"name": "char", "type": {"unit": {}}},
+              {"name": "decimal", "type": {"unit": {}}},
+              {"name": "double", "type": {"unit": {}}},
+              {"name": "float", "type": {"unit": {}}},
+              {"name": "int", "type": {"unit": {}}},
+              {"name": "long", "type": {"unit": {}}},
+              {"name": "object", "type": {"unit": {}}},
+              {"name": "sbyte", "type": {"unit": {}}},
+              {"name": "short", "type": {"unit": {}}},
+              {"name": "string", "type": {"unit": {}}},
+              {"name": "uint", "type": {"unit": {}}},
+              {"name": "ulong", "type": {"unit": {}}},
+              {"name": "ushort", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullConditionalMemberAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}},
+              {
+                "name": "dependentAccess",
+                "type": {"list": {"variable": "hydra.csharp.syntax.DependentAccess"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DependentAccess",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "memberAccess",
+                "type": {"variable": "hydra.csharp.syntax.DependentAccessForMember"}},
+              {
+                "name": "elementAccess",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentList"}},
+              {
+                "name": "invocation",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DependentAccessForMember",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullConditionalProjectionInitializer",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InvocationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullConditionalInvocationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "head",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalInvocationExpressionHead"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullConditionalInvocationExpressionHead",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "member",
+                "type": {"variable": "hydra.csharp.syntax.NullConditionalMemberAccess"}},
+              {
+                "name": "element",
+                "type": {"variable": "hydra.csharp.syntax.NullConditionalElementAccess"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ElementAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryNoArrayCreationExpression"}},
+              {
+                "name": "arguments",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullConditionalElementAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryNoArrayCreationExpression"}},
+              {
+                "name": "arguments",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentList"}},
+              {
+                "name": "dependentAccess",
+                "type": {"list": {"variable": "hydra.csharp.syntax.DependentAccess"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BaseAccess",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.BaseAccessWithIdentifier"}},
+              {
+                "name": "arguments",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BaseAccessWithIdentifier",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ObjectCreationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}},
+              {
+                "name": "initializer",
+                "type": {
+                  "maybe": {"variable": "hydra.csharp.syntax.ObjectOrCollectionInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ObjectOrCollectionInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "object",
+                "type": {"list": {"variable": "hydra.csharp.syntax.MemberInitializer"}}},
+              {
+                "name": "collection",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ElementInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberInitializer",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "target",
+                "type": {"variable": "hydra.csharp.syntax.InitializerTarget"}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.InitializerValue"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InitializerTarget",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "arguments",
+                "type": {"variable": "hydra.csharp.syntax.ArgumentList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InitializerValue",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "objectOrCollection",
+                "type": {"variable": "hydra.csharp.syntax.ObjectOrCollectionInitializer"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ElementInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "single",
+                "type": {"variable": "hydra.csharp.syntax.NonAssignmentExpression"}},
+              {
+                "name": "list",
+                "type": {"variable": "hydra.csharp.syntax.ExpressionList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExpressionList",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Expression"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArrayCreationExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "nonArrayType",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NonArrayTypeArrayCreationExpression"}},
+              {
+                "name": "arrayType",
+                "type": {"variable": "hydra.csharp.syntax.ArrayTypeArrayCreationExpression"}},
+              {
+                "name": "rankSpecifier",
+                "type": {
+                  "variable": "hydra.csharp.syntax.RankSpecifierArrayCreationExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NonArrayTypeArrayCreationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.NonArrayType"}},
+              {
+                "name": "expressions",
+                "type": {"variable": "hydra.csharp.syntax.ExpressionList"}},
+              {
+                "name": "rankSpecifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.RankSpecifier"}}},
+              {
+                "name": "initializer",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArrayInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArrayTypeArrayCreationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.ArrayType"}},
+              {
+                "name": "initializer",
+                "type": {"variable": "hydra.csharp.syntax.ArrayInitializer"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RankSpecifierArrayCreationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "rankSpecifier",
+                "type": {"variable": "hydra.csharp.syntax.RankSpecifier"}},
+              {
+                "name": "initializer",
+                "type": {"variable": "hydra.csharp.syntax.ArrayInitializer"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DelegateCreationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.DelegateType"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberDeclaratorList",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.MemberDeclarator"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberDeclarator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.SimpleName"}},
+              {
+                "name": "memberAccess",
+                "type": {"variable": "hydra.csharp.syntax.MemberAccess"}},
+              {
+                "name": "nullConditionalProjectionInitializer",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalProjectionInitializer"}},
+              {
+                "name": "baseAccess",
+                "type": {"variable": "hydra.csharp.syntax.BaseAccess"}},
+              {
+                "name": "assignment",
+                "type": {"variable": "hydra.csharp.syntax.AssignmentMemberDeclarator"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AssignmentMemberDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeofExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "unboundTypeName",
+                "type": {"variable": "hydra.csharp.syntax.UnboundTypeName"}},
+              {"name": "void", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UnboundTypeName",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.UnboundTypeNamePart"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UnboundTypeNamePart",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {"name": "aliased", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "dimension",
+                "type": {"maybe": {"literal": {"integer": {"int32": {}}}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DefaultValueExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "explicitlyTyped",
+                "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {"name": "defaultLiteral", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StackallocExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.UnmanagedType"}}},
+              {
+                "name": "expression",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ConstantExpression"}}},
+              {
+                "name": "initializer",
+                "type": {"list": {"variable": "hydra.csharp.syntax.Expression"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamedEntity",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "target",
+                "type": {"variable": "hydra.csharp.syntax.NamedEntityTarget"}},
+              {
+                "name": "parts",
+                "type": {"list": {"variable": "hydra.csharp.syntax.NamedEntityPart"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamedEntityPart",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamedEntityTarget",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.SimpleName"}},
+              {"name": "this", "type": {"unit": {}}},
+              {"name": "base", "type": {"unit": {}}},
+              {
+                "name": "predefinedType",
+                "type": {"variable": "hydra.csharp.syntax.PredefinedType"}},
+              {
+                "name": "qualifiedAliasMember",
+                "type": {"variable": "hydra.csharp.syntax.QualifiedAliasMember"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UnaryExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "primary",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "plus",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "minus",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "not",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "bitwiseComplement",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "preIncrement",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "preDecrement",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "cast",
+                "type": {"variable": "hydra.csharp.syntax.CastExpression"}},
+              {
+                "name": "await",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "pointerIndirection",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "addressOf",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.CastExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MultiplicativeExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryMultiplicativeExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryMultiplicativeExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.MultiplicativeExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.MultiplicativeOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MultiplicativeOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "times", "type": {"unit": {}}},
+              {"name": "divide", "type": {"unit": {}}},
+              {"name": "modulo", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AdditiveExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.MultiplicativeExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryAdditiveExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryAdditiveExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.AdditiveExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.AdditiveOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.MultiplicativeExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AdditiveOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "plus", "type": {"unit": {}}},
+              {"name": "minus", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ShiftExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.AdditiveExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryShiftExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryShiftExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.ShiftExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.ShiftOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.AdditiveExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ShiftOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "left", "type": {"unit": {}}},
+              {"name": "right", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RelationalExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.ShiftExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryRelationalExpression"}},
+              {
+                "name": "isType",
+                "type": {"variable": "hydra.csharp.syntax.IsTypeExpression"}},
+              {
+                "name": "isPattern",
+                "type": {"variable": "hydra.csharp.syntax.IsPatternExpression"}},
+              {
+                "name": "asType",
+                "type": {"variable": "hydra.csharp.syntax.AsTypeExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryRelationalExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.RelationalOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.ShiftExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RelationalOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "lessThan", "type": {"unit": {}}},
+              {"name": "greaterThan", "type": {"unit": {}}},
+              {"name": "lessThanOrEqual", "type": {"unit": {}}},
+              {"name": "greaterThanOrEqual", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IsTypeExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IsPatternExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}},
+              {
+                "name": "pattern",
+                "type": {"variable": "hydra.csharp.syntax.Pattern"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AsTypeExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EqualityExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryEqualityExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryEqualityExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.EqualityExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.EqualityOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.RelationalExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EqualityOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "equal", "type": {"unit": {}}},
+              {"name": "notEqual", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AndExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.EqualityExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryAndExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryAndExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.AndExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.EqualityExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExclusiveOrExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.AndExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryExclusiveOrExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryExclusiveOrExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.ExclusiveOrExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.AndExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InclusiveOrExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.ExclusiveOrExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryInclusiveOrExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryInclusiveOrExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.InclusiveOrExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.ExclusiveOrExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConditionalAndExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.InclusiveOrExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryConditionalAndExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryConditionalAndExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalAndExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.InclusiveOrExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConditionalOrExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalAndExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryConditionalOrExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryConditionalOrExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalOrExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalAndExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NullCoalescingExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalOrExpression"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryNullCoalescingExpression"}},
+              {
+                "name": "throw",
+                "type": {"variable": "hydra.csharp.syntax.NullCoalescingExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryNullCoalescingExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalOrExpression"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.NullCoalescingExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DeclarationExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.LocalVariableType"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalVariableType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {"name": "var", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConditionalExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "simple",
+                "type": {"variable": "hydra.csharp.syntax.NullCoalescingExpression"}},
+              {
+                "name": "simpleConditional",
+                "type": {"variable": "hydra.csharp.syntax.SimpleConditionalExpression"}},
+              {
+                "name": "refConditional",
+                "type": {"variable": "hydra.csharp.syntax.RefConditionalExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SimpleConditionalExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "condition",
+                "type": {"variable": "hydra.csharp.syntax.NullCoalescingExpression"}},
+              {
+                "name": "true",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "false",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefConditionalExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "condition",
+                "type": {"variable": "hydra.csharp.syntax.NullCoalescingExpression"}},
+              {
+                "name": "true",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {
+                "name": "false",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LambdaExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "async", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "signature",
+                "type": {"variable": "hydra.csharp.syntax.AnonymousFunctionSignature"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.AnonymousFunctionBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AnonymousMethodExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "async", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "signature",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.ExplicitAnonymousFunctionParameter"}}},
+              {"name": "body", "type": {"variable": "hydra.csharp.syntax.Block"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AnonymousFunctionSignature",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "explicit",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.ExplicitAnonymousFunctionParameter"}}},
+              {
+                "name": "implicit",
+                "type": {"list": {"variable": "hydra.csharp.syntax.Identifier"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExplicitAnonymousFunctionParameter",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "modifier",
+                "type": {
+                  "maybe": {"variable": "hydra.csharp.syntax.AnonymousFunctionParameterModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AnonymousFunctionParameterModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "ref", "type": {"unit": {}}},
+              {"name": "out", "type": {"unit": {}}},
+              {"name": "in", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AnonymousFunctionBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "nullConditionalInvocation",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalInvocationExpression"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QueryExpression",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "from",
+                "type": {"variable": "hydra.csharp.syntax.FromClause"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.QueryBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FromClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Type"}}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {"name": "in", "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QueryBody",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "clauses",
+                "type": {"list": {"variable": "hydra.csharp.syntax.QueryBodyClause"}}},
+              {
+                "name": "selectOrGroup",
+                "type": {"variable": "hydra.csharp.syntax.SelectOrGroupClause"}},
+              {
+                "name": "continuation",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.QueryContinuation"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QueryBodyClause",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "from",
+                "type": {"variable": "hydra.csharp.syntax.FromClause"}},
+              {"name": "let", "type": {"variable": "hydra.csharp.syntax.LetClause"}},
+              {
+                "name": "where",
+                "type": {"variable": "hydra.csharp.syntax.BooleanExpression"}},
+              {
+                "name": "join",
+                "type": {"variable": "hydra.csharp.syntax.JoinClause"}},
+              {
+                "name": "orderby",
+                "type": {"list": {"variable": "hydra.csharp.syntax.Ordering"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LetClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.JoinClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "type",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Type"}}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {"name": "in", "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "on", "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "equals",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "into",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Ordering",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "direction",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.OrderingDirection"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OrderingDirection",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "ascending", "type": {"unit": {}}},
+              {"name": "descending", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SelectOrGroupClause",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "select",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "group",
+                "type": {"variable": "hydra.csharp.syntax.GroupClause"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.GroupClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "grouped",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "by", "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QueryContinuation",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "into",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.QueryBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Assignment",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.AssignmentOperator"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AssignmentOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "simple", "type": {"literal": {"boolean": {}}}},
+              {"name": "plusEquals", "type": {"unit": {}}},
+              {"name": "minusEquals", "type": {"unit": {}}},
+              {"name": "timesEquals", "type": {"unit": {}}},
+              {"name": "divideEquals", "type": {"unit": {}}},
+              {"name": "modEquals", "type": {"unit": {}}},
+              {"name": "andEquals", "type": {"unit": {}}},
+              {"name": "orEquals", "type": {"unit": {}}},
+              {"name": "xorEquals", "type": {"unit": {}}},
+              {"name": "leftShiftEquals", "type": {"unit": {}}},
+              {"name": "rightShiftEquals", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Expression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "nonAssignment",
+                "type": {"variable": "hydra.csharp.syntax.NonAssignmentExpression"}},
+              {
+                "name": "assignment",
+                "type": {"variable": "hydra.csharp.syntax.Assignment"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NonAssignmentExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "declaration",
+                "type": {"variable": "hydra.csharp.syntax.DeclarationExpression"}},
+              {
+                "name": "conditional",
+                "type": {"variable": "hydra.csharp.syntax.ConditionalExpression"}},
+              {
+                "name": "lambda",
+                "type": {"variable": "hydra.csharp.syntax.LambdaExpression"}},
+              {
+                "name": "query",
+                "type": {"variable": "hydra.csharp.syntax.QueryExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstantExpression",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Expression"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BooleanExpression",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Expression"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Statement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "labeled",
+                "type": {"variable": "hydra.csharp.syntax.LabeledStatement"}},
+              {
+                "name": "declaration",
+                "type": {"variable": "hydra.csharp.syntax.DeclarationStatement"}},
+              {
+                "name": "embedded",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EmbeddedStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {"name": "empty", "type": {"unit": {}}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.StatementExpression"}},
+              {
+                "name": "selection",
+                "type": {"variable": "hydra.csharp.syntax.SelectionStatement"}},
+              {
+                "name": "iteration",
+                "type": {"variable": "hydra.csharp.syntax.IterationStatement"}},
+              {
+                "name": "jump",
+                "type": {"variable": "hydra.csharp.syntax.JumpStatement"}},
+              {
+                "name": "try",
+                "type": {"variable": "hydra.csharp.syntax.TryStatement"}},
+              {"name": "checked", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "unchecked",
+                "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "lock",
+                "type": {"variable": "hydra.csharp.syntax.LockStatement"}},
+              {
+                "name": "using",
+                "type": {"variable": "hydra.csharp.syntax.UsingStatement"}},
+              {
+                "name": "yield",
+                "type": {"variable": "hydra.csharp.syntax.YieldStatement"}},
+              {"name": "unsafe", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "fixed",
+                "type": {"variable": "hydra.csharp.syntax.FixedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Block",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Statement"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LabeledStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "label",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "statement",
+                "type": {"variable": "hydra.csharp.syntax.Statement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DeclarationStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "variable",
+                "type": {"variable": "hydra.csharp.syntax.LocalVariableDeclaration"}},
+              {
+                "name": "constant",
+                "type": {"variable": "hydra.csharp.syntax.LocalConstantDeclaration"}},
+              {
+                "name": "function",
+                "type": {"variable": "hydra.csharp.syntax.LocalFunctionDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalVariableDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "implicitlyTyped",
+                "type": {
+                  "variable": "hydra.csharp.syntax.ImplicitlyTypedLocalVariableDeclaration"}},
+              {
+                "name": "explicitlyTyped",
+                "type": {
+                  "variable": "hydra.csharp.syntax.ExplicitlyTypedLocalVariableDeclaration"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.RefLocalVariableDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ImplicitlyTypedLocalVariableDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "var",
+                "type": {
+                  "variable": "hydra.csharp.syntax.ImplicitlyTypedLocalVariableDeclarator"}},
+              {
+                "name": "refVar",
+                "type": {
+                  "variable": "hydra.csharp.syntax.RefVarImplicitlyTypedLocalVariableDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefVarImplicitlyTypedLocalVariableDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "refKind",
+                "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {
+                "name": "declarator",
+                "type": {"variable": "hydra.csharp.syntax.RefLocalVariableDeclarator"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ImplicitlyTypedLocalVariableDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExplicitlyTypedLocalVariableDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {
+                  "list": {
+                    "variable": "hydra.csharp.syntax.ExplicitlyTypedLocalVariableDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExplicitlyTypedLocalVariableDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "initializer",
+                "type": {
+                  "maybe": {"variable": "hydra.csharp.syntax.LocalVariableInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalVariableInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "initializer",
+                "type": {"variable": "hydra.csharp.syntax.ArrayInitializer"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefLocalVariableDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "refKind",
+                "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.RefLocalVariableDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefLocalVariableDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalConstantDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ConstantDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstantDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.ConstantExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalFunctionDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "standard",
+                "type": {"variable": "hydra.csharp.syntax.StandardLocalFunctionDeclaration"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.RefLocalFunctionDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StandardLocalFunctionDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.LocalFunctionModifier"}}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.ReturnType"}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.LocalFunctionHeader"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.LocalFunctionBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefLocalFunctionDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.RefLocalFunctionModifier"}}},
+              {
+                "name": "refKind",
+                "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.LocalFunctionHeader"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.RefLocalFunctionBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalFunctionHeader",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeParameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeParameterList"}}},
+              {
+                "name": "parameters",
+                "type": {"variable": "hydra.csharp.syntax.FormalParameterList"}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalFunctionModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.RefLocalFunctionModifier"}},
+              {"name": "async", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefLocalFunctionModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LocalFunctionBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "nullConditionalInvocation",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalInvocationExpression"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefLocalFunctionBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StatementExpression",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "nullConditionalInvocation",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalInvocationExpression"}},
+              {
+                "name": "invocation",
+                "type": {"variable": "hydra.csharp.syntax.InvocationExpression"}},
+              {
+                "name": "objectCreation",
+                "type": {"variable": "hydra.csharp.syntax.ObjectCreationExpression"}},
+              {
+                "name": "assignment",
+                "type": {"variable": "hydra.csharp.syntax.Assignment"}},
+              {
+                "name": "postIncrement",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "postDecrement",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "preIncrement",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "preDecrement",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}},
+              {
+                "name": "await",
+                "type": {"variable": "hydra.csharp.syntax.UnaryExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SelectionStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "if",
+                "type": {"variable": "hydra.csharp.syntax.IfStatement"}},
+              {
+                "name": "switch",
+                "type": {"variable": "hydra.csharp.syntax.SwitchStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IfStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "condition",
+                "type": {"variable": "hydra.csharp.syntax.BooleanExpression"}},
+              {
+                "name": "ifBranch",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}},
+              {
+                "name": "elseBranch",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SwitchStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "branches",
+                "type": {"list": {"variable": "hydra.csharp.syntax.SwitchSection"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SwitchSection",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "labels",
+                "type": {"list": {"variable": "hydra.csharp.syntax.SwitchLabel"}}},
+              {
+                "name": "statements",
+                "type": {"list": {"variable": "hydra.csharp.syntax.Statement"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SwitchLabel",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "branch",
+                "type": {"variable": "hydra.csharp.syntax.SwitchBranch"}},
+              {"name": "default", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SwitchBranch",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "pattern",
+                "type": {"variable": "hydra.csharp.syntax.Pattern"}},
+              {
+                "name": "guard",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Expression"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IterationStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "while",
+                "type": {"variable": "hydra.csharp.syntax.WhileStatement"}},
+              {
+                "name": "do",
+                "type": {"variable": "hydra.csharp.syntax.DoStatement"}},
+              {
+                "name": "for",
+                "type": {"variable": "hydra.csharp.syntax.ForStatement"}},
+              {
+                "name": "foreach",
+                "type": {"variable": "hydra.csharp.syntax.ForeachStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.WhileStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "condition",
+                "type": {"variable": "hydra.csharp.syntax.BooleanExpression"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DoStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}},
+              {
+                "name": "while",
+                "type": {"variable": "hydra.csharp.syntax.BooleanExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ForStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "initializer",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ForInitializer"}}},
+              {
+                "name": "condition",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.BooleanExpression"}}},
+              {
+                "name": "iterator",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.StatementExpressionList"}}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ForInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "variable",
+                "type": {"variable": "hydra.csharp.syntax.LocalVariableDeclaration"}},
+              {
+                "name": "statements",
+                "type": {"variable": "hydra.csharp.syntax.StatementExpressionList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StatementExpressionList",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.StatementExpression"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ForeachStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "kind",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.RefKind"}}},
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.LocalVariableType"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.JumpStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "break", "type": {"unit": {}}},
+              {"name": "continue", "type": {"unit": {}}},
+              {
+                "name": "goto",
+                "type": {"variable": "hydra.csharp.syntax.GotoStatement"}},
+              {
+                "name": "return",
+                "type": {"variable": "hydra.csharp.syntax.ReturnStatement"}},
+              {
+                "name": "throw",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Expression"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.GotoStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "case",
+                "type": {"variable": "hydra.csharp.syntax.ConstantExpression"}},
+              {"name": "default", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ReturnStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "simple", "type": {"unit": {}}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TryStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "body", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "catches",
+                "type": {"variable": "hydra.csharp.syntax.CatchClauses"}},
+              {
+                "name": "finally",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Block"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.CatchClauses",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "specific",
+                "type": {"list": {"variable": "hydra.csharp.syntax.SpecificCatchClause"}}},
+              {"name": "general", "type": {"variable": "hydra.csharp.syntax.Block"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SpecificCatchClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "specifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ExceptionSpecifier"}}},
+              {
+                "name": "filter",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.BooleanExpression"}}},
+              {"name": "body", "type": {"variable": "hydra.csharp.syntax.Block"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExceptionSpecifier",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "identifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.LockStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UsingStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "acquisition",
+                "type": {"variable": "hydra.csharp.syntax.ResourceAcquisition"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ResourceAcquisition",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "local",
+                "type": {"variable": "hydra.csharp.syntax.LocalVariableDeclaration"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.YieldStatement",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "return",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "break", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.CompilationUnit",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "externs",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ExternAliasDirective"}}},
+              {
+                "name": "usings",
+                "type": {"list": {"variable": "hydra.csharp.syntax.UsingDirective"}}},
+              {
+                "name": "attributes",
+                "type": {"list": {"variable": "hydra.csharp.syntax.GlobalAttributeSection"}}},
+              {
+                "name": "members",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.NamespaceMemberDeclaration"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamespaceDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.QualifiedIdentifier"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.NamespaceBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QualifiedIdentifier",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Identifier"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamespaceBody",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "externs",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ExternAliasDirective"}}},
+              {
+                "name": "usings",
+                "type": {"list": {"variable": "hydra.csharp.syntax.UsingDirective"}}},
+              {
+                "name": "members",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.NamespaceMemberDeclaration"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ExternAliasDirective",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.Identifier"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UsingDirective",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "alias",
+                "type": {"variable": "hydra.csharp.syntax.UsingAliasDirective"}},
+              {
+                "name": "namespace",
+                "type": {"variable": "hydra.csharp.syntax.NamespaceName"}},
+              {
+                "name": "static",
+                "type": {"variable": "hydra.csharp.syntax.TypeName"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UsingAliasDirective",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "alias",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.NamespaceOrTypeName"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamespaceMemberDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "namespace",
+                "type": {"variable": "hydra.csharp.syntax.NamespaceDeclaration"}},
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.TypeDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "class",
+                "type": {"variable": "hydra.csharp.syntax.ClassDeclaration"}},
+              {
+                "name": "struct",
+                "type": {"variable": "hydra.csharp.syntax.StructDeclaration"}},
+              {
+                "name": "interface",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceDeclaration"}},
+              {
+                "name": "enum",
+                "type": {"variable": "hydra.csharp.syntax.EnumDeclaration"}},
+              {
+                "name": "delegate",
+                "type": {"variable": "hydra.csharp.syntax.DelegateDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.QualifiedAliasMember",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "alias",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "member",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"list": {"variable": "hydra.csharp.syntax.AttributeSection"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ClassModifier"}}},
+              {"name": "partial", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeParameterList"}}},
+              {
+                "name": "base",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ClassBase"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.ClassBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "abstract", "type": {"unit": {}}},
+              {"name": "sealed", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeParameterList",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.TypeParameterPart"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeParameterPart",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassBase",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "class",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ClassType"}}},
+              {
+                "name": "interfaces",
+                "type": {"list": {"variable": "hydra.csharp.syntax.InterfaceType"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeParameterConstraintsClause",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}},
+              {
+                "name": "constraints",
+                "type": {"list": {"variable": "hydra.csharp.syntax.TypeParameterConstraints"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.TypeParameterConstraints",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "primary",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.PrimaryConstraint"}}},
+              {
+                "name": "secondary",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.SecondaryConstraints"}}},
+              {"name": "constructor", "type": {"literal": {"boolean": {}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PrimaryConstraint",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "classType",
+                "type": {"variable": "hydra.csharp.syntax.ClassType"}},
+              {"name": "class", "type": {"unit": {}}},
+              {"name": "struct", "type": {"unit": {}}},
+              {"name": "unmanaged", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SecondaryConstraints",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.SecondaryConstraint"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.SecondaryConstraint",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "interface",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceType"}},
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassBody",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.ClassMemberDeclaration"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ClassMemberDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "constant",
+                "type": {"variable": "hydra.csharp.syntax.ConstantDeclaration"}},
+              {
+                "name": "field",
+                "type": {"variable": "hydra.csharp.syntax.FieldDeclaration"}},
+              {
+                "name": "method",
+                "type": {"variable": "hydra.csharp.syntax.MethodDeclaration"}},
+              {
+                "name": "property",
+                "type": {"variable": "hydra.csharp.syntax.PropertyDeclaration"}},
+              {
+                "name": "event",
+                "type": {"variable": "hydra.csharp.syntax.EventDeclaration"}},
+              {
+                "name": "indexer",
+                "type": {"variable": "hydra.csharp.syntax.IndexerDeclaration"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.OperatorDeclaration"}},
+              {
+                "name": "constructor",
+                "type": {"variable": "hydra.csharp.syntax.ConstructorDeclaration"}},
+              {
+                "name": "finalizer",
+                "type": {"variable": "hydra.csharp.syntax.FinalizerDeclaration"}},
+              {
+                "name": "staticConstructor",
+                "type": {"variable": "hydra.csharp.syntax.StaticConstructorDeclaration"}},
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.TypeDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstantDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ConstantModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ConstantDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstantModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FieldDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.FieldModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {"list": {"variable": "hydra.csharp.syntax.VariableDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FieldModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "readonly", "type": {"unit": {}}},
+              {"name": "volatile", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariableDeclarators",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.VariableDeclarator"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariableDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "initializer",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.VariableInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MethodDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "standard",
+                "type": {"variable": "hydra.csharp.syntax.StandardMethodDeclaration"}},
+              {
+                "name": "refReturn",
+                "type": {"variable": "hydra.csharp.syntax.RefReturnMethodDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StandardMethodDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.MethodModifier"}}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.ReturnType"}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.MethodHeader"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.MethodBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefReturnMethodDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.RefMethodModifier"}}},
+              {"name": "kind", "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.ReturnType"}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.MethodHeader"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.RefMethodBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MethodModifiers",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.MethodModifier"}}},
+              {"name": "partial", "type": {"literal": {"boolean": {}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefKind",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "ref", "type": {"unit": {}}},
+              {"name": "refReadonly", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MethodHeader",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.MemberName"}},
+              {
+                "name": "typeParameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeParameterList"}}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.FormalParameterList"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MethodModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.RefMethodModifier"}},
+              {"name": "async", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefMethodModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "virtual", "type": {"unit": {}}},
+              {"name": "sealed", "type": {"unit": {}}},
+              {"name": "override", "type": {"unit": {}}},
+              {"name": "abstract", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ReturnType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "ref", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {"name": "void", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MemberName",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "interfaceType",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeName"}}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.MethodBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "nullConditionalInvocation",
+                "type": {
+                  "variable": "hydra.csharp.syntax.NullConditionalInvocationExpression"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefMethodBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FormalParameterList",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "fixed",
+                "type": {"list": {"variable": "hydra.csharp.syntax.FixedParameter"}}},
+              {
+                "name": "array",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ParameterArray"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedParameter",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ParameterModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "defaultArgument",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Expression"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ParameterModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "mode",
+                "type": {"variable": "hydra.csharp.syntax.ParameterModeModifier"}},
+              {"name": "this", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ParameterModeModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "ref", "type": {"unit": {}}},
+              {"name": "out", "type": {"unit": {}}},
+              {"name": "in", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ParameterArray",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.ArrayType"}},
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PropertyDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "standard",
+                "type": {"variable": "hydra.csharp.syntax.StandardPropertyDeclaration"}},
+              {
+                "name": "refReturn",
+                "type": {"variable": "hydra.csharp.syntax.RefReturnPropertyDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StandardPropertyDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.PropertyModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.MemberName"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.PropertyBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefReturnPropertyDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.PropertyModifier"}}},
+              {
+                "name": "refKind",
+                "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.MemberName"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.RefPropertyBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PropertyModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "virtual", "type": {"unit": {}}},
+              {"name": "sealed", "type": {"unit": {}}},
+              {"name": "override", "type": {"unit": {}}},
+              {"name": "abstract", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PropertyBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "block",
+                "type": {"variable": "hydra.csharp.syntax.BlockPropertyBody"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BlockPropertyBody",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "accessors",
+                "type": {"variable": "hydra.csharp.syntax.AccessorDeclarations"}},
+              {
+                "name": "initializer",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.VariableInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefPropertyBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "block",
+                "type": {"variable": "hydra.csharp.syntax.RefGetAccessorDeclaration"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AccessorDeclarations",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "get",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AccessorDeclaration"}}},
+              {
+                "name": "set",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AccessorDeclaration"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AccessorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AccessorModifier"}}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.AccessorBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AccessorModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "protectedInternal", "type": {"unit": {}}},
+              {"name": "internalProtected", "type": {"unit": {}}},
+              {"name": "protectedPrivate", "type": {"unit": {}}},
+              {"name": "privateProtected", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AccessorBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefGetAccessorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifier",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AccessorModifier"}}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.RefAccessorBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefAccessorBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EventDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "standard",
+                "type": {"variable": "hydra.csharp.syntax.StandardEventDeclaration"}},
+              {
+                "name": "accessors",
+                "type": {"variable": "hydra.csharp.syntax.AccessorsEventDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StandardEventDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.EventModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {"variable": "hydra.csharp.syntax.VariableDeclarators"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AccessorsEventDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.EventModifier"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.MemberName"}},
+              {
+                "name": "accessors",
+                "type": {"variable": "hydra.csharp.syntax.EventAccessorDeclarations"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EventModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "virtual", "type": {"unit": {}}},
+              {"name": "sealed", "type": {"unit": {}}},
+              {"name": "override", "type": {"unit": {}}},
+              {"name": "abstract", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EventAccessorDeclarations",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "add",
+                "type": {"variable": "hydra.csharp.syntax.AddRemoveAccessorDeclaration"}},
+              {
+                "name": "remove",
+                "type": {"variable": "hydra.csharp.syntax.AddRemoveAccessorDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AddRemoveAccessorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "body", "type": {"variable": "hydra.csharp.syntax.Block"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IndexerDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "standard",
+                "type": {"variable": "hydra.csharp.syntax.StandardIndexerDeclaration"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.RefIndexerDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StandardIndexerDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.IndexerModifier"}}},
+              {
+                "name": "declarator",
+                "type": {"variable": "hydra.csharp.syntax.IndexerDeclarator"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.IndexerBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefIndexerDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.IndexerModifier"}}},
+              {
+                "name": "refKind",
+                "type": {"variable": "hydra.csharp.syntax.RefKind"}},
+              {
+                "name": "declarator",
+                "type": {"variable": "hydra.csharp.syntax.IndexerDeclarator"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.RefIndexerBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IndexerModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "virtual", "type": {"unit": {}}},
+              {"name": "sealed", "type": {"unit": {}}},
+              {"name": "override", "type": {"unit": {}}},
+              {"name": "abstract", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IndexerDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "interface",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.InterfaceType"}}},
+              {
+                "name": "parameters",
+                "type": {"variable": "hydra.csharp.syntax.FormalParameterList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.IndexerBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "block",
+                "type": {"variable": "hydra.csharp.syntax.AccessorDeclarations"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.RefIndexerBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "block",
+                "type": {"variable": "hydra.csharp.syntax.RefGetAccessorDeclaration"}},
+              {
+                "name": "ref",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OperatorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.OperatorModifier"}}},
+              {
+                "name": "declarator",
+                "type": {"variable": "hydra.csharp.syntax.OperatorDeclarator"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.OperatorBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OperatorModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "static", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OperatorDeclarator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "unary",
+                "type": {"variable": "hydra.csharp.syntax.UnaryOperatorDeclarator"}},
+              {
+                "name": "binary",
+                "type": {"variable": "hydra.csharp.syntax.BinaryOperatorDeclarator"}},
+              {
+                "name": "conversion",
+                "type": {"variable": "hydra.csharp.syntax.ConversionOperatorDeclarator"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.UnaryOperatorDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.OverloadableUnaryOperator"}},
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.FixedParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OverloadableUnaryOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "plus", "type": {"unit": {}}},
+              {"name": "minus", "type": {"unit": {}}},
+              {"name": "not", "type": {"unit": {}}},
+              {"name": "complement", "type": {"unit": {}}},
+              {"name": "increment", "type": {"unit": {}}},
+              {"name": "decrement", "type": {"unit": {}}},
+              {"name": "true", "type": {"unit": {}}},
+              {"name": "false", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.BinaryOperatorDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.OverloadableBinaryOperator"}},
+              {
+                "name": "left",
+                "type": {"variable": "hydra.csharp.syntax.FixedParameter"}},
+              {
+                "name": "right",
+                "type": {"variable": "hydra.csharp.syntax.FixedParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OverloadableBinaryOperator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "add", "type": {"unit": {}}},
+              {"name": "subtract", "type": {"unit": {}}},
+              {"name": "multiply", "type": {"unit": {}}},
+              {"name": "divide", "type": {"unit": {}}},
+              {"name": "modulus", "type": {"unit": {}}},
+              {"name": "and", "type": {"unit": {}}},
+              {"name": "or", "type": {"unit": {}}},
+              {"name": "xor", "type": {"unit": {}}},
+              {"name": "leftShift", "type": {"unit": {}}},
+              {"name": "rightShift", "type": {"unit": {}}},
+              {"name": "equal", "type": {"unit": {}}},
+              {"name": "notEqual", "type": {"unit": {}}},
+              {"name": "greaterThan", "type": {"unit": {}}},
+              {"name": "lessThan", "type": {"unit": {}}},
+              {"name": "greaterThanOrEqual", "type": {"unit": {}}},
+              {"name": "lessThanOrEqual", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConversionOperatorDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "kind",
+                "type": {"variable": "hydra.csharp.syntax.ConversionKind"}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.FixedParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConversionKind",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "implicit", "type": {"unit": {}}},
+              {"name": "explicit", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.OperatorBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstructorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.ConstructorModifier"}}},
+              {
+                "name": "declarator",
+                "type": {"variable": "hydra.csharp.syntax.ConstructorDeclarator"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.ConstructorBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstructorModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "extern", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstructorDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.FormalParameterList"}}},
+              {
+                "name": "initializer",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ConstructorInitializer"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstructorInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "base",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}},
+              {
+                "name": "this",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ConstructorBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StaticConstructorDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"variable": "hydra.csharp.syntax.StaticConstructorModifiers"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.StaticConstructorBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StaticConstructorModifiers",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {"name": "extern", "type": {"literal": {"boolean": {}}}},
+              {"name": "unsafe", "type": {"literal": {"boolean": {}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StaticConstructorBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FinalizerDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "extern", "type": {"literal": {"boolean": {}}}},
+              {"name": "unsafe", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "body",
+                "type": {"variable": "hydra.csharp.syntax.FinalizerBody"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FinalizerBody",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "block", "type": {"variable": "hydra.csharp.syntax.Block"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {"name": "empty", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StructDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.StructModifier"}}},
+              {"name": "ref", "type": {"literal": {"boolean": {}}}},
+              {"name": "partial", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeParameterList"}}},
+              {
+                "name": "interfaces",
+                "type": {"list": {"variable": "hydra.csharp.syntax.InterfaceType"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}},
+              {
+                "name": "body",
+                "type": {"list": {"variable": "hydra.csharp.syntax.StructMemberDeclaration"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StructModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "readonly", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.StructMemberDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "constant",
+                "type": {"variable": "hydra.csharp.syntax.ConstantDeclaration"}},
+              {
+                "name": "field",
+                "type": {"variable": "hydra.csharp.syntax.FieldDeclaration"}},
+              {
+                "name": "method",
+                "type": {"variable": "hydra.csharp.syntax.MethodDeclaration"}},
+              {
+                "name": "property",
+                "type": {"variable": "hydra.csharp.syntax.PropertyDeclaration"}},
+              {
+                "name": "event",
+                "type": {"variable": "hydra.csharp.syntax.EventDeclaration"}},
+              {
+                "name": "indexer",
+                "type": {"variable": "hydra.csharp.syntax.IndexerDeclaration"}},
+              {
+                "name": "operator",
+                "type": {"variable": "hydra.csharp.syntax.OperatorDeclaration"}},
+              {
+                "name": "constructor",
+                "type": {"variable": "hydra.csharp.syntax.ConstructorDeclaration"}},
+              {
+                "name": "staticConstructor",
+                "type": {"variable": "hydra.csharp.syntax.StaticConstructorDeclaration"}},
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.TypeDeclaration"}},
+              {
+                "name": "fixedSizeBuffer",
+                "type": {"variable": "hydra.csharp.syntax.FixedSizeBufferDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.ArrayInitializer",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.VariableInitializer"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariableInitializer",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}},
+              {
+                "name": "array",
+                "type": {"variable": "hydra.csharp.syntax.ArrayInitializer"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.InterfaceModifier"}}},
+              {"name": "partial", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.VariantTypeParameters"}}},
+              {
+                "name": "base",
+                "type": {"list": {"variable": "hydra.csharp.syntax.InterfaceType"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}},
+              {
+                "name": "body",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.InterfaceMemberDeclaration"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariantTypeParameters",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.VariantTypeParameter"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VariantTypeParameter",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "variance",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.VarianceAnnotation"}}},
+              {
+                "name": "parameter",
+                "type": {"variable": "hydra.csharp.syntax.TypeParameter"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.VarianceAnnotation",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "in", "type": {"unit": {}}},
+              {"name": "out", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceMemberDeclaration",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "method",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceMethodDeclaration"}},
+              {
+                "name": "property",
+                "type": {"variable": "hydra.csharp.syntax.InterfacePropertyDeclaration"}},
+              {
+                "name": "event",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceEventDeclaration"}},
+              {
+                "name": "indexer",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceIndexerDeclaration"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceMethodDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "new", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.ReturnType"}},
+              {
+                "name": "refKind",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.RefKind"}}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceMethodHeader"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceMethodHeader",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.FormalParameterList"}}},
+              {
+                "name": "typeParameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeParameterList"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfacePropertyDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "new", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "refKind",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.RefKind"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "accessors",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceAccessors"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceAccessors",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "get",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "set",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceEventDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "new", "type": {"literal": {"boolean": {}}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.InterfaceIndexerDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {"name": "new", "type": {"literal": {"boolean": {}}}},
+              {
+                "name": "refKind",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.RefKind"}}},
+              {"name": "type", "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "parameters",
+                "type": {"variable": "hydra.csharp.syntax.FormalParameterList"}},
+              {
+                "name": "accessors",
+                "type": {"variable": "hydra.csharp.syntax.InterfaceAccessors"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.EnumModifier"}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "base",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.EnumBase"}}},
+              {
+                "name": "body",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.EnumBody"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumBase",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "type",
+                "type": {"variable": "hydra.csharp.syntax.IntegralType"}},
+              {"name": "name", "type": {"variable": "hydra.csharp.syntax.TypeName"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumBody",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.EnumMemberDeclaration"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.EnumMemberDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "value",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ConstantExpression"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DelegateDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.DelegateModifier"}}},
+              {
+                "name": "returnType",
+                "type": {"variable": "hydra.csharp.syntax.ReturnType"}},
+              {
+                "name": "refKind",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.RefKind"}}},
+              {
+                "name": "refReturnType",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Type"}}},
+              {
+                "name": "header",
+                "type": {"variable": "hydra.csharp.syntax.DelegateHeader"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DelegateHeader",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeParameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.VariantTypeParameters"}}},
+              {
+                "name": "parameters",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.FormalParameterList"}}},
+              {
+                "name": "constraints",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.TypeParameterConstraintsClause"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.DelegateModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "protected", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.GlobalAttributeSection",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "target",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "attributes",
+                "type": {"variable": "hydra.csharp.syntax.AttributeList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Attributes",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.AttributeSection"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeSection",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "target",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AttributeTarget"}}},
+              {
+                "name": "attributes",
+                "type": {"variable": "hydra.csharp.syntax.AttributeList"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeTarget",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "identifier",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "keyword",
+                "type": {"variable": "hydra.csharp.syntax.Keyword"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeList",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.Attribute"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.Attribute",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.AttributeName"}},
+              {
+                "name": "arguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.AttributeArguments"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeName",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.TypeName"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeArguments",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "positonal",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.PositionalArgumentList"}}},
+              {
+                "name": "named",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.NamedArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PositionalArgumentList",
+        "typeScheme": {
+          "body": {
+            "wrap": {"list": {"variable": "hydra.csharp.syntax.PositionalArgument"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PositionalArgument",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Identifier"}}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.AttributeArgumentExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamedArgumentList",
+        "typeScheme": {
+          "body": {"wrap": {"list": {"variable": "hydra.csharp.syntax.NamedArgument"}}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.NamedArgument",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "value",
+                "type": {"variable": "hydra.csharp.syntax.AttributeArgumentExpression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.AttributeArgumentExpression",
+        "typeScheme": {
+          "body": {"wrap": {"variable": "hydra.csharp.syntax.NonAssignmentExpression"}},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PointerType",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "valueType",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.ValueType"}}},
+              {
+                "name": "pointerDepth",
+                "type": {"literal": {"integer": {"int32": {}}}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PointerMemberAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "pointer",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryExpression"}},
+              {
+                "name": "member",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "typeArguments",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.TypeArgumentList"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.PointerElementAccess",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "pointer",
+                "type": {"variable": "hydra.csharp.syntax.PrimaryNoArrayCreationExpression"}},
+              {
+                "name": "index",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedStatement",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "pointerType",
+                "type": {"variable": "hydra.csharp.syntax.PointerType"}},
+              {
+                "name": "declarators",
+                "type": {"list": {"variable": "hydra.csharp.syntax.FixedPointerDeclarator"}}},
+              {
+                "name": "statement",
+                "type": {"variable": "hydra.csharp.syntax.EmbeddedStatement"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedPointerDeclarator",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {
+                "name": "reference",
+                "type": {"variable": "hydra.csharp.syntax.VariableReference"}},
+              {
+                "name": "expression",
+                "type": {"variable": "hydra.csharp.syntax.Expression"}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedSizeBufferDeclaration",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "attributes",
+                "type": {"maybe": {"variable": "hydra.csharp.syntax.Attributes"}}},
+              {
+                "name": "modifiers",
+                "type": {"list": {"variable": "hydra.csharp.syntax.FixedSizeBufferModifier"}}},
+              {
+                "name": "elementType",
+                "type": {"variable": "hydra.csharp.syntax.Type"}},
+              {
+                "name": "declarators",
+                "type": {
+                  "list": {"variable": "hydra.csharp.syntax.FixedSizeBufferDeclarator"}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedSizeBufferModifier",
+        "typeScheme": {
+          "body": {
+            "union": [
+              {"name": "new", "type": {"unit": {}}},
+              {"name": "public", "type": {"unit": {}}},
+              {"name": "internal", "type": {"unit": {}}},
+              {"name": "private", "type": {"unit": {}}},
+              {"name": "unsafe", "type": {"unit": {}}}]},
+          "variables": []}}},
+    {
+      "type": {
+        "name": "hydra.csharp.syntax.FixedSizeBufferDeclarator",
+        "typeScheme": {
+          "body": {
+            "record": [
+              {
+                "name": "name",
+                "type": {"variable": "hydra.csharp.syntax.Identifier"}},
+              {
+                "name": "size",
+                "type": {"variable": "hydra.csharp.syntax.ConstantExpression"}}]},
+          "variables": []}}}],
+  "description": "A C# syntax module based on the ANTLR grammar dated 02/07/2024 and available at:\n  https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/grammar",
+  "namespace": "hydra.csharp.syntax",
+  "termDependencies": ["hydra.core"],
+  "typeDependencies": ["hydra.core"]}

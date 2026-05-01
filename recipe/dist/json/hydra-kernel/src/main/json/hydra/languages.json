@@ -1,0 +1,174 @@
+{
+  "definitions": [
+    {
+      "term": {
+        "name": "hydra.languages.hydraLanguage",
+        "term": {
+          "annotated": {
+            "annotation": [
+              {
+                "key": "description",
+                "value": {
+                  "literal": {
+                    "string": "Language constraints for Hydra Core, i.e. no constraints."}}}],
+            "body": {
+              "let": {
+                "bindings": [
+                  {
+                    "name": "eliminationVariants",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.eliminationVariants"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.variants.EliminationVariant"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.variants.EliminationVariant"}},
+                      "variables": []}},
+                  {
+                    "name": "literalVariants",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.literalVariants"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.variants.LiteralVariant"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.variants.LiteralVariant"}},
+                      "variables": []}},
+                  {
+                    "name": "floatTypes",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.floatTypes"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.core.FloatType"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.core.FloatType"}},
+                      "variables": []}},
+                  {
+                    "name": "functionVariants",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.functionVariants"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.variants.FunctionVariant"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.variants.FunctionVariant"}},
+                      "variables": []}},
+                  {
+                    "name": "integerTypes",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.integerTypes"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.core.IntegerType"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.core.IntegerType"}},
+                      "variables": []}},
+                  {
+                    "name": "termVariants",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.termVariants"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.variants.TermVariant"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.variants.TermVariant"}},
+                      "variables": []}},
+                  {
+                    "name": "typeVariants",
+                    "term": {
+                      "application": {
+                        "argument": {"variable": "hydra.reflect.typeVariants"},
+                        "function": {
+                          "typeApplication": {
+                            "body": {"variable": "hydra.lib.sets.fromList"},
+                            "type": {"variable": "hydra.variants.TypeVariant"}}}}},
+                    "typeScheme": {
+                      "body": {"set": {"variable": "hydra.variants.TypeVariant"}},
+                      "variables": []}},
+                  {
+                    "name": "types",
+                    "term": {
+                      "lambda": {
+                        "body": {
+                          "application": {
+                            "argument": {"variable": "t"},
+                            "function": {
+                              "cases": {
+                                "cases": [],
+                                "default": {"literal": {"boolean": true}},
+                                "typeName": "hydra.core.Type"}}}},
+                        "domain": {"variable": "hydra.core.Type"},
+                        "parameter": "t"}},
+                    "typeScheme": {
+                      "body": {
+                        "function": {
+                          "codomain": {"literal": {"boolean": {}}},
+                          "domain": {"variable": "hydra.core.Type"}}},
+                      "variables": []}}],
+                "body": {
+                  "record": {
+                    "fields": [
+                      {
+                        "name": "name",
+                        "term": {
+                          "wrap": {
+                            "body": {"literal": {"string": "hydra.core"}},
+                            "typeName": "hydra.coders.LanguageName"}}},
+                      {
+                        "name": "constraints",
+                        "term": {
+                          "record": {
+                            "fields": [
+                              {
+                                "name": "eliminationVariants",
+                                "term": {"variable": "eliminationVariants"}},
+                              {"name": "literalVariants", "term": {"variable": "literalVariants"}},
+                              {"name": "floatTypes", "term": {"variable": "floatTypes"}},
+                              {"name": "functionVariants", "term": {"variable": "functionVariants"}},
+                              {"name": "integerTypes", "term": {"variable": "integerTypes"}},
+                              {"name": "termVariants", "term": {"variable": "termVariants"}},
+                              {"name": "typeVariants", "term": {"variable": "typeVariants"}},
+                              {"name": "types", "term": {"variable": "types"}}],
+                            "typeName": "hydra.coders.LanguageConstraints"}}}],
+                    "typeName": "hydra.coders.Language"}}}}}},
+        "typeScheme": {"body": {"variable": "hydra.coders.Language"}, "variables": []}}}],
+  "description": "Language constraints for Hydra Core",
+  "namespace": "hydra.languages",
+  "termDependencies": ["hydra.reflect"],
+  "typeDependencies": [
+    "hydra.paths",
+    "hydra.ast",
+    "hydra.classes",
+    "hydra.coders",
+    "hydra.context",
+    "hydra.core",
+    "hydra.error.checking",
+    "hydra.error.core",
+    "hydra.error.packaging",
+    "hydra.errors",
+    "hydra.graph",
+    "hydra.json.model",
+    "hydra.packaging",
+    "hydra.parsing",
+    "hydra.phantoms",
+    "hydra.query",
+    "hydra.relational",
+    "hydra.tabular",
+    "hydra.testing",
+    "hydra.topology",
+    "hydra.typing",
+    "hydra.util",
+    "hydra.variants"]}
