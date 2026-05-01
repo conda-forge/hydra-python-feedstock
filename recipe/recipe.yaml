@@ -9,12 +9,6 @@ recipe:
   name: hydra-python
   version: ${{ version }}
 
-source:
-  - url: https://github.com/CategoricalData/hydra/archive/refs/tags/${{ version }}.tar.gz
-    sha256: f156dd703b75448d288c4b7f65748cee62e8e5913fe48e25d630433f76669021
-  - path: dist/python/
-    target_directory: dist/python/
-
 build:
   number: 0
   noarch: python
@@ -23,10 +17,13 @@ outputs:
   - package:
       name: hydra-kernel
       version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-kernel/hydra_kernel-${{ version }}.tar.gz
+      sha256: "b9c72c7a627577c1b2ab73de8001b664212a80d549c26fad8b97b571fc303eec"
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-kernel
+        - cp $RECIPE_DIR/LICENSE .
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -49,10 +46,13 @@ outputs:
   - package:
       name: hydra-rdf
       version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-rdf/hydra_rdf-${{ version }}.tar.gz
+      sha256: "74efa8ea85f98e4f459730e6a0bc451e3401bca0838823eea8466b32ac3d3136"
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-rdf
+        - cp $RECIPE_DIR/LICENSE .
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -75,10 +75,13 @@ outputs:
   - package:
       name: hydra-pg
       version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-pg/hydra_pg-${{ version }}.tar.gz
+      sha256: "b920f8a1d8ebeecdd1550df02a97167b57a1b5d84bca1c89c2553b4f6c3d815d"
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-pg
+        - cp $RECIPE_DIR/LICENSE .
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -100,14 +103,17 @@ outputs:
       license: Apache-2.0
       license_file: LICENSE
 
-# hydra-ext temporarily suppressed: dist/python/hydra-ext not yet available
+# hydra-ext temporarily suppressed: not yet published to PyPI
 #  - package:
 #      name: hydra-ext
 #      version: ${{ version }}
+#    source:
+#      url: https://pypi.org/packages/source/h/hydra-ext/hydra_ext-${{ version }}.tar.gz
+#      sha256: "0000000000000000000000000000000000000000000000000000000000000000"  # TODO: fill in after PyPI publish
 #    build:
 #      noarch: python
 #      script:
-#        - cd dist/python/hydra-ext
+#        - cp $RECIPE_DIR/LICENSE .
 #        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 #    requirements:
 #      host:
@@ -130,10 +136,14 @@ outputs:
   - package:
       name: hydra-python
       version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-python/hydra_python-${{ version }}.tar.gz
+      sha256: "52f04e3419af16dd18a58b9b49976121874818f1c41e050c36896e845b26ab91"
     build:
       noarch: python
       script:
-        - cd dist/python/hydra-python
+        - cp $RECIPE_DIR/LICENSE .
+        - sed -i 's|readme = ".*"|readme = { text = "Python syntax, serde, and coder for Hydra", content-type = "text/markdown" }|' pyproject.toml
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:

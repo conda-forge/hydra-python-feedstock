@@ -9,6 +9,12 @@ recipe:
   name: hydra-python
   version: ${{ version }}
 
+source:
+  - url: https://github.com/CategoricalData/hydra/archive/refs/tags/${{ version }}.tar.gz
+    sha256: f156dd703b75448d288c4b7f65748cee62e8e5913fe48e25d630433f76669021
+  - path: dist/python/
+    target_directory: dist/python/
+
 build:
   number: 0
   noarch: python
@@ -17,12 +23,10 @@ outputs:
   - package:
       name: hydra-kernel
       version: ${{ version }}
-    source:
-      url: https://pypi.io/packages/source/h/hydra-kernel/hydra_kernel-${{ version }}.tar.gz
-      sha256: 0000000000000000000000000000000000000000000000000000000000000000  # TODO: fill in after PyPI publish
     build:
       noarch: python
       script:
+        - cd dist/python/hydra-kernel
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -45,12 +49,10 @@ outputs:
   - package:
       name: hydra-rdf
       version: ${{ version }}
-    source:
-      url: https://pypi.io/packages/source/h/hydra-rdf/hydra_rdf-${{ version }}.tar.gz
-      sha256: 0000000000000000000000000000000000000000000000000000000000000000  # TODO: fill in after PyPI publish
     build:
       noarch: python
       script:
+        - cd dist/python/hydra-rdf
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -73,12 +75,10 @@ outputs:
   - package:
       name: hydra-pg
       version: ${{ version }}
-    source:
-      url: https://pypi.io/packages/source/h/hydra-pg/hydra_pg-${{ version }}.tar.gz
-      sha256: 0000000000000000000000000000000000000000000000000000000000000000  # TODO: fill in after PyPI publish
     build:
       noarch: python
       script:
+        - cd dist/python/hydra-pg
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
@@ -100,43 +100,40 @@ outputs:
       license: Apache-2.0
       license_file: LICENSE
 
-  - package:
-      name: hydra-ext
-      version: ${{ version }}
-    source:
-      url: https://pypi.io/packages/source/h/hydra-ext/hydra_ext-${{ version }}.tar.gz
-      sha256: 0000000000000000000000000000000000000000000000000000000000000000  # TODO: fill in after PyPI publish
-    build:
-      noarch: python
-      script:
-        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-    requirements:
-      host:
-        - pip
-        - python ${{ python_min }}.*
-        - hatchling >=1.8.0
-        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
-      run:
-        - python >=${{ python_min }}
-        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
-    tests:
-      - python:
-          pip_check: true
-          python_version: ${{ python_min }}.*
-    about:
-      summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
-      license: Apache-2.0
-      license_file: LICENSE
+# hydra-ext temporarily suppressed: dist/python/hydra-ext not yet available
+#  - package:
+#      name: hydra-ext
+#      version: ${{ version }}
+#    build:
+#      noarch: python
+#      script:
+#        - cd dist/python/hydra-ext
+#        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+#    requirements:
+#      host:
+#        - pip
+#        - python ${{ python_min }}.*
+#        - hatchling >=1.8.0
+#        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+#      run:
+#        - python >=${{ python_min }}
+#        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+#    tests:
+#      - python:
+#          pip_check: true
+#          python_version: ${{ python_min }}.*
+#    about:
+#      summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
+#      license: Apache-2.0
+#      license_file: LICENSE
 
   - package:
       name: hydra-python
       version: ${{ version }}
-    source:
-      url: https://pypi.io/packages/source/h/hydra-python/hydra_python-${{ version }}.tar.gz
-      sha256: 0000000000000000000000000000000000000000000000000000000000000000  # TODO: fill in after PyPI publish
     build:
       noarch: python
       script:
+        - cd dist/python/hydra-python
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
