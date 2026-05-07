@@ -2,51 +2,181 @@
 schema_version: 1
 
 context:
-  name: hydra-python
-  version: "0.14.1"
+  version: "0.15.0"
   python_min: "3.12"
 
-package:
+recipe:
   name: hydra-python
   version: ${{ version }}
-
-source:
-  url: https://github.com/CategoricalData/hydra/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 49467589726debf9b01a64f877878499f6beb8231684709bc9407ec3360dedff
 
 build:
   number: 0
   noarch: python
-  script: 
-    - cd hydra-python
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
-requirements:
-  host:
-    - pip
-    - python ${{ python_min }}.*
-    - hatchling >=1.8.0
-  run:
-    - python >=${{ python_min }}
+outputs:
+  - package:
+      name: hydra-kernel
+      version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-kernel/hydra_kernel-${{ version }}.tar.gz
+      sha256: "b9c72c7a627577c1b2ab73de8001b664212a80d549c26fad8b97b571fc303eec"
+    build:
+      noarch: python
+      script:
+        - cp $RECIPE_DIR/LICENSE .
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - hatchling >=1.8.0
+      run:
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports:
+            - hydra.core
+          pip_check: true
+          python_version: ${{ python_min }}.*
+    about:
+      summary: Hydra kernel - core types, terms, DSL, eval, and primitives
+      license: Apache-2.0
+      license_file: LICENSE
 
-tests:
-  - python:
-      imports:
-        - hydra
-      pip_check: true
+  - package:
+      name: hydra-rdf
+      version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-rdf/hydra_rdf-${{ version }}.tar.gz
+      sha256: "74efa8ea85f98e4f459730e6a0bc451e3401bca0838823eea8466b32ac3d3136"
+    build:
+      noarch: python
+      script:
+        - cp $RECIPE_DIR/LICENSE .
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - hatchling >=1.8.0
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+    about:
+      summary: Hydra RDF - RDF, OWL, SHACL, ShEx, and XML Schema models
+      license: Apache-2.0
+      license_file: LICENSE
+
+  - package:
+      name: hydra-pg
+      version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-pg/hydra_pg-${{ version }}.tar.gz
+      sha256: "b920f8a1d8ebeecdd1550df02a97167b57a1b5d84bca1c89c2553b4f6c3d815d"
+    build:
+      noarch: python
+      script:
+        - cp $RECIPE_DIR/LICENSE .
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - hatchling >=1.8.0
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+        - ${{ pin_subpackage('hydra-rdf', exact=True) }}
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+        - ${{ pin_subpackage('hydra-rdf', exact=True) }}
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+    about:
+      summary: Hydra PG - property graph model, coders, GraphSON, and TinkerPop
+      license: Apache-2.0
+      license_file: LICENSE
+
+# hydra-ext temporarily suppressed: not yet published to PyPI
+#  - package:
+#      name: hydra-ext
+#      version: ${{ version }}
+#    source:
+#      url: https://pypi.org/packages/source/h/hydra-ext/hydra_ext-${{ version }}.tar.gz
+#      sha256: "0000000000000000000000000000000000000000000000000000000000000000"  # TODO: fill in after PyPI publish
+#    build:
+#      noarch: python
+#      script:
+#        - cp $RECIPE_DIR/LICENSE .
+#        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+#    requirements:
+#      host:
+#        - pip
+#        - python ${{ python_min }}.*
+#        - hatchling >=1.8.0
+#        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+#      run:
+#        - python >=${{ python_min }}
+#        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+#    tests:
+#      - python:
+#          pip_check: true
+#          python_version: ${{ python_min }}.*
+#    about:
+#      summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
+#      license: Apache-2.0
+#      license_file: LICENSE
+
+  - package:
+      name: hydra-python
+      version: ${{ version }}
+    source:
+      url: https://pypi.org/packages/source/h/hydra-python/hydra_python-${{ version }}.tar.gz
+      sha256: "52f04e3419af16dd18a58b9b49976121874818f1c41e050c36896e845b26ab91"
+    build:
+      noarch: python
+      script:
+        - cp $RECIPE_DIR/LICENSE .
+        - sed -i 's|readme = ".*"|readme = { text = "Python syntax, serde, and coder for Hydra", content-type = "text/markdown" }|' pyproject.toml
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - hatchling >=1.8.0
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage('hydra-kernel', exact=True) }}
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+    about:
+      summary: Hydra Python - Python syntax, serde, and coder
+      license: Apache-2.0
+      license_file: LICENSE
 
 about:
   homepage: https://github.com/CategoricalData/hydra
   license: Apache-2.0
   license_file: LICENSE
-  summary: Hydra Python implementation - type-safe transformations for data and programs
+  summary: Hydra - type-aware data transformation toolkit
   description: |
     Hydra is a domain-specific language for data models and data transformations.
     It is based on a typed lambda calculus, and transforms data and schemas between
-    languages in a way which maintains type conformance. This package contains the
-    Python implementation of Hydra.
+    languages in a way which maintains type conformance. Starting with 0.15, the
+    Python release ships per-package wheels using PEP 420 implicit namespace packages,
+    so multiple wheels install side-by-side and merge their hydra.* contents at
+    import time.
   repository: https://github.com/CategoricalData/hydra
-  documentation: https://github.com/CategoricalData/hydra/tree/main/hydra-python
+  documentation: https://github.com/CategoricalData/hydra/wiki
 
 extra:
   recipe-maintainers:
