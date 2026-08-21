@@ -10,7 +10,7 @@ recipe:
   version: ${{ version }}
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 outputs:
@@ -37,7 +37,9 @@ outputs:
           imports:
             - hydra.core
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
     about:
       summary: Hydra kernel - core types, terms, DSL, eval, and primitives
       license: Apache-2.0
