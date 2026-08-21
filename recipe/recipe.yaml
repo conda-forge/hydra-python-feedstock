@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.17.4"
+  version: "0.17.5"
   python_min: "3.12"
 
 recipe:
@@ -19,7 +19,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-kernel/hydra_kernel-${{ version }}.tar.gz
-      sha256: "2a8cd2b8d4a7fbdd751eca1829a88775260f97fc3e1023c49f7bfa237bf17f06"
+      sha256: "c38509a949d800748c7a1be51c70a43b05c4b1ee809f7e660353851ff9d44ea4"
     build:
       noarch: python
       script:
@@ -48,7 +48,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-rdf/hydra_rdf-${{ version }}.tar.gz
-      sha256: "bfce583ab23a66254be7603d2bbd36031af5f00b167423174e31e662a80308be"
+      sha256: "799ceb69f1678c64d8f747a1dc8168530363fa91b5d5ac4f425cc3946c1e41f2"
     build:
       noarch: python
       script:
@@ -77,7 +77,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-pg/hydra_pg-${{ version }}.tar.gz
-      sha256: "b23cfd9548a1c4a04291b4e8a1e13e9afd0330ac0e1d597d177e83034157d015"
+      sha256: "a6adeb40e505a5d5b5483c7208a93088a2be47877109252c2029ca0b488f9594"
     build:
       noarch: python
       script:
@@ -138,7 +138,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-python/hydra_python-${{ version }}.tar.gz
-      sha256: "87fef1b870ee4d6055f794d7b78ef468c08e084ba8940a682b5a4372fe574956"
+      sha256: "95c0ba20b30ecfb6906d4249d9c89b5264f9ec3357510e4cf3f90e32c7905f25"
     build:
       noarch: python
       script:
