@@ -1,28 +1,8 @@
-About hydra-ext-feedstock
-=========================
+About hydra-kernel-feedstock
+============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hydra-python-feedstock/blob/main/LICENSE.txt)
 
-
-About hydra-ext
----------------
-
-Home: https://github.com/CategoricalData/hydra
-
-Package license: Apache-2.0
-
-Summary: Hydra ext - Avro, Protobuf, GraphQL, Pegasus, C++, Rust, and Go extension models
-
-Development: https://github.com/CategoricalData/hydra
-
-Documentation: https://github.com/CategoricalData/hydra/wiki
-
-Hydra is a domain-specific language for data models and data transformations.
-It is based on a typed lambda calculus, and transforms data and schemas between
-languages in a way which maintains type conformance. Starting with 0.15, the
-Python release ships per-package wheels using PEP 420 implicit namespace packages,
-so multiple wheels install side-by-side and merge their hydra.* contents at
-import time.
 
 About hydra-kernel
 ------------------
@@ -111,7 +91,9 @@ Current build status
 <table><tr>
     <td>All platforms:</td>
     <td>
-      <img src="https://img.shields.io/badge/noarch-disabled-lightgrey.svg" alt="noarch disabled">
+      <a href="https://github.com/conda-forge/hydra-python-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/hydra-python-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
     </td>
   </tr>
 </table>
@@ -121,58 +103,101 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--ext-green.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-ext.svg)](https://anaconda.org/conda-forge/hydra-ext) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--kernel-green.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-kernel.svg)](https://anaconda.org/conda-forge/hydra-kernel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--pg-green.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-pg.svg)](https://anaconda.org/conda-forge/hydra-pg) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--python-green.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-python.svg)](https://anaconda.org/conda-forge/hydra-python) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-hydra--rdf-green.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/hydra-rdf.svg)](https://anaconda.org/conda-forge/hydra-rdf) |
 
-Installing hydra-ext
-====================
+Installing hydra-kernel
+=======================
 
-Installing `hydra-ext` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `hydra-kernel` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `hydra-ext, hydra-kernel, hydra-pg, hydra-python, hydra-rdf` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
-conda install hydra-ext hydra-kernel hydra-pg hydra-python hydra-rdf
+conda install hydra-kernel hydra-pg hydra-python hydra-rdf
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
-mamba install hydra-ext hydra-kernel hydra-pg hydra-python hydra-rdf
+mamba install hydra-kernel hydra-pg hydra-python hydra-rdf
 ```
 
-It is possible to list all of the versions of `hydra-ext` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
 
 ```
-conda search hydra-ext --channel conda-forge
+# for adding to your local project
+pixi add hydra-kernel hydra-pg hydra-python hydra-rdf
+# for installing globally
+pixi global install hydra-kernel hydra-pg hydra-python hydra-rdf
 ```
 
-or with `mamba`:
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `hydra-kernel` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
-mamba search hydra-ext --channel conda-forge
+conda search hydra-kernel --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With mamba</summary>
+
+```
+mamba search hydra-kernel --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search hydra-kernel --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search hydra-ext --channel conda-forge
+mamba repoquery search hydra-kernel --channel conda-forge
 
-# List packages depending on `hydra-ext`:
-mamba repoquery whoneeds hydra-ext --channel conda-forge
+# List packages depending on `hydra-kernel`:
+mamba repoquery whoneeds hydra-kernel --channel conda-forge
 
-# List dependencies of `hydra-ext`:
-mamba repoquery depends hydra-ext --channel conda-forge
+# List dependencies of `hydra-kernel`:
+mamba repoquery depends hydra-kernel --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
@@ -216,17 +241,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating hydra-ext-feedstock
-============================
+Updating hydra-kernel-feedstock
+===============================
 
-If you would like to improve the hydra-ext recipe or build a new
+If you would like to improve the hydra-kernel recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/hydra-ext-feedstock are
+Note that all branches in the conda-forge/hydra-kernel-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.

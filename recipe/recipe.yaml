@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.15.0"
+  version: "0.17.5"
   python_min: "3.12"
 
 recipe:
@@ -10,7 +10,7 @@ recipe:
   version: ${{ version }}
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 outputs:
@@ -19,7 +19,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-kernel/hydra_kernel-${{ version }}.tar.gz
-      sha256: "b9c72c7a627577c1b2ab73de8001b664212a80d549c26fad8b97b571fc303eec"
+      sha256: "c38509a949d800748c7a1be51c70a43b05c4b1ee809f7e660353851ff9d44ea4"
     build:
       noarch: python
       script:
@@ -37,7 +37,9 @@ outputs:
           imports:
             - hydra.core
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
     about:
       summary: Hydra kernel - core types, terms, DSL, eval, and primitives
       license: Apache-2.0
@@ -48,7 +50,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-rdf/hydra_rdf-${{ version }}.tar.gz
-      sha256: "74efa8ea85f98e4f459730e6a0bc451e3401bca0838823eea8466b32ac3d3136"
+      sha256: "799ceb69f1678c64d8f747a1dc8168530363fa91b5d5ac4f425cc3946c1e41f2"
     build:
       noarch: python
       script:
@@ -77,7 +79,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-pg/hydra_pg-${{ version }}.tar.gz
-      sha256: "b920f8a1d8ebeecdd1550df02a97167b57a1b5d84bca1c89c2553b4f6c3d815d"
+      sha256: "a6adeb40e505a5d5b5483c7208a93088a2be47877109252c2029ca0b488f9594"
     build:
       noarch: python
       script:
@@ -138,7 +140,7 @@ outputs:
       version: ${{ version }}
     source:
       url: https://pypi.org/packages/source/h/hydra-python/hydra_python-${{ version }}.tar.gz
-      sha256: "52f04e3419af16dd18a58b9b49976121874818f1c41e050c36896e845b26ab91"
+      sha256: "95c0ba20b30ecfb6906d4249d9c89b5264f9ec3357510e4cf3f90e32c7905f25"
     build:
       noarch: python
       script:
